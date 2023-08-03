@@ -24,6 +24,7 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7153;http://localhost:5236",
       "environmentVariables": {
+        //this is refering to the appsettings.Development.json
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
