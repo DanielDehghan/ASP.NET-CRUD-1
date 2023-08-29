@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using BulkyWeb.Data;
-using BulkyWeb.Models;
+﻿using Bulky.DataAccess.Data;
+using Microsoft.AspNetCore.Mvc;
+using Bulky.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BulkyWeb.Controllers
@@ -57,6 +57,7 @@ namespace BulkyWeb.Controllers
 
 		}
 
+	
 		public IActionResult Edit(int? id)
 		{
 			// Making nullable by adding ? 
