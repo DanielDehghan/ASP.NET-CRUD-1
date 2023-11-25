@@ -1,4 +1,6 @@
-using Bulky.DataAccess.Data;
+using BulkyBook.DataAccess.Data;
+using BulkyBook.DataAccess.Repository;
+using BulkyBook.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,9 +15,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// We have to register ICategoryRepository service into DI container 
+// Scoped life time is the most common one so for one request it will use the same service
+// service and implimentation 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+ var app = builder.Build();
 
 
-var app = builder.Build();
 
 
 //Pipeline means when a request come to an application how do we want to process that 
@@ -43,6 +50,6 @@ app.UseAuthorization();
 // so here we have default route of our application
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Home}/{action=Privacy}/{id?}");
+	pattern: "{area=Customer}/{controller=Home}/{action=Privacy}/{id?}");
 
 app.Run();
